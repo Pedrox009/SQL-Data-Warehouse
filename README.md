@@ -9,7 +9,7 @@ In this project, we build an advanced data warehouse in SQL Server, with ETL pro
 3. **Data Modeling**: Developing fact and dimension tables optimized for analytical queries.
 4. **Analytics & Reporting**: Creating SQL-based reports and dashboards for actionable insights.
 
-Thefollowing are our architecture layers:
+The following are our architecture layers:
 
 1. **Bronze Layer**: Stores raw data as-is from the source systems. Data is ingested from CSV Files into SQL Server Database.
 2. **Silver Layer**: This layer includes data cleansing, standardization, and normalization processes to prepare data for analysis.
