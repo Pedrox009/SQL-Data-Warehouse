@@ -56,7 +56,7 @@ BEGIN
         );
         
         -- Insert cleaned data
-        SET NOCOUNT ON;
+        SET NOCOUNT ON; -- Otherwise it will output an extra wrong one
         INSERT INTO bronze.crm_cust_info (
             cst_id,
             cst_key,
