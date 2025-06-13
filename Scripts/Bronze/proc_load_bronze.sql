@@ -1,3 +1,12 @@
+/*
+===============================================================================
+Load Bronze Layer
+===============================================================================
+    This script loads data into bronze schema for CSV files. 
+    It truncates bronze tables before loading then sues BULK INSERT to load the CSV data into the tables.
+===============================================================================
+*/
+
 CREATE OR ALTER PROCEDURE bronze.load_bronze AS
 BEGIN
     -- to show wall time of outputs
