@@ -21,7 +21,8 @@ BEGIN
         PRINT 'Loading CRM tables';
         PRINT '+++++++++++++++++++++++++++++++++++++';
         SET @start_time = GETDATE();
-        -- Drop and create staging table fresh
+        -- Drop and create staging table fresh because for some reason BULK INSERT the original data has error with the datatype 
+        -- because of invisible \r character, so create a new table 'stg' without it and insert its values to the 'crm' table
         DROP TABLE IF EXISTS bronze.stg_cust_info;
         CREATE TABLE bronze.stg_cust_info (
             cst_id VARCHAR(MAX),
@@ -42,21 +43,9 @@ BEGIN
             FIELDTERMINATOR = ',',
             TABLOCK
         );
-
-        -- Drop and create final table fresh
-        DROP TABLE IF EXISTS bronze.crm_cust_info;
-        CREATE TABLE bronze.crm_cust_info (
-            cst_id VARCHAR(MAX),
-            cst_key VARCHAR(MAX),
-            cst_firstname VARCHAR(MAX),
-            cst_lastname VARCHAR(MAX),
-            cst_marital_status VARCHAR(MAX),
-            cst_gndr VARCHAR(MAX),
-            cst_create_date DATE
-        );
         
         -- Insert cleaned data
-        SET NOCOUNT ON; -- Otherwise it will output an extra wrong one
+        SET NOCOUNT ON;
         INSERT INTO bronze.crm_cust_info (
             cst_id,
             cst_key,
@@ -81,8 +70,6 @@ BEGIN
         SET @end_time = GETDATE();
         PRINT '>> Wall Time: ' + CAST(DATEDIFF(second,@start_time,@end_time) AS NVARCHAR) + ' seconds';
         Print '---------';
-        
-
 
         SET @start_time = GETDATE();
         TRUNCATE TABLE bronze.crm_sales_details;
@@ -167,4 +154,3 @@ BEGIN
         PRINT '==================================================================';
     END CATCH
 END
-
