@@ -1,6 +1,6 @@
 # SQL Data Warehouse and Analytics
 
-In this project, we build an advanced data warehouse in SQL Server, with ETL processes, data modeling and analytics. 
+In this project, we build an advanced data warehouse in SQL Server, with ETL processes. This is part 1, the constructing of the warehouse. Part 2 is the analysis and KPI.
 
 ## Project Overview
 
